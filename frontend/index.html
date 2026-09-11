@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document Intelligence</title>
+
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="topbar">
+        <div>
+            <h1>Document Intelligence</h1>
+            <p>AI-powered document extraction and financial validation</p>
+        </div>
+
+        <div class="api-status">
+            <span id="apiStatusDot" class="status-dot"></span>
+            <span id="apiStatusText">Checking API...</span>
+        </div>
+    </header>
+
+
+    <main class="container">
+
+        <!-- Upload Section -->
+        <section class="card upload-card">
+
+            <div class="section-header">
+                <div>
+                    <h2>Process Document</h2>
+                    <p>Upload a financial document for AI-powered extraction and validation.</p>
+                </div>
+            </div>
+
+            <form id="uploadForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="documentType">
+                            Document Type
+                        </label>
+
+                        <select id="documentType" required>
+                            <option value="">Select document type</option>
+                            <option value="invoice">Invoice</option>
+                            <option value="balance_sheet">Balance Sheet</option>
+                            <option value="cash_flow">Cash Flow</option>
+                            <option value="profit_and_loss">Profit & Loss</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="fileInput">
+                            Document File
+                        </label>
+
+                        <input
+                            type="file"
+                            id="fileInput"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            required
+                        >
+
+                        <small>
+                            Supported formats: PDF, JPG, JPEG, PNG
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="file-preview" id="filePreview">
+                    <span id="fileName">No file selected</span>
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="processButton"
+                    class="primary-button"
+                >
+                    Process Document
+                </button>
+
+            </form>
+
+
+            <!-- Processing message -->
+            <div id="processingMessage" class="message hidden">
+                <div class="spinner"></div>
+                <span>Processing document... This may take a few moments.</span>
+            </div>
+
+
+            <!-- Error message -->
+            <div id="errorMessage" class="message error hidden"></div>
+
+
+            <!-- Success message -->
+            <div id="successMessage" class="message success hidden"></div>
+
+        </section>
+
+
+        <!-- Dashboard Section -->
+        <section class="card">
+
+            <div class="section-header">
+                <div>
+                    <h2>Processed Documents</h2>
+                    <p>Previously processed documents stored by the backend.</p>
+                </div>
+
+                <button
+                    type="button"
+                    id="refreshButton"
+                    class="secondary-button"
+                >
+                    Refresh
+                </button>
+            </div>
+
+
+            <div id="documentsContainer">
+
+                <div class="loading">
+                    Loading documents...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Result Section -->
+        <section
+            id="resultSection"
+            class="card hidden"
+        >
+
+            <div class="section-header">
+                <div>
+                    <h2>Document Result</h2>
+                    <p id="resultDocumentName"></p>
+                </div>
+
+                <button
+                    type="button"
+                    id="closeResultButton"
+                    class="secondary-button"
+                >
+                    Close
+                </button>
+            </div>
+
+
+            <!-- Overview -->
+            <div class="result-overview">
+
+                <div class="overview-item">
+                    <span class="overview-label">Document Type</span>
+                    <strong id="resultDocumentType">-</strong>
+                </div>
+
+                <div class="overview-item">
+                    <span class="overview-label">Status</span>
+                    <strong id="resultStatus">-</strong>
+                </div>
+
+                <div class="overview-item">
+                    <span class="overview-label">Processed</span>
+                    <strong id="resultCreatedAt">-</strong>
+                </div>
+
+            </div>
+
+
+            <!-- Extracted Data -->
+            <div class="result-block">
+
+                <h3>Extracted Information</h3>
+
+                <div id="extractedData"></div>
+
+            </div>
+
+
+            <!-- Validation -->
+            <div class="result-block">
+
+                <h3>Financial Validation Checks</h3>
+
+                <div id="validationData"></div>
+
+            </div>
+
+
+            <!-- Raw JSON -->
+            <div class="result-block">
+
+                <div class="json-header">
+                    <h3>Raw Structured JSON</h3>
+
+                    <button
+                        type="button"
+                        id="copyJsonButton"
+                        class="secondary-button"
+                    >
+                        Copy JSON
+                    </button>
+                </div>
+
+                <pre id="rawJson"></pre>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>
+            Document Intelligence • AI Engineer Internship Project
+        </p>
+    </footer>
+
+
+    <script src="static/js/app.js"></script>
+
+</body>
+</html>
